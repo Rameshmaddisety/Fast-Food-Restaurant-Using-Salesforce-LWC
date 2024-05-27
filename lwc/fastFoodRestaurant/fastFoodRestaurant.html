@@ -1,0 +1,101 @@
+<template>
+    <!--comments on HTML>-->
+    <div class="app">
+    <lightning-card class="slds-align_absolute-center" title="Fast Food Restaurant"> 
+    <template lwc:if={home}>
+            <p class="slds-p-horizontal_small;" style="color:blue;"><b>Welcome to Fast Food Restaurant</b></p>
+            <img style="max-height: 480px;" alt="Image on T.O." src={torontoImage}/>
+                <div class="demo-only--sizing slds-grid">
+                    <div class="slds-size_1-of-2">
+                        <lightning-button style="position: absolute;z-index: 1;top: 390px;" title="Order" label="Order" variant="brand" onclick={Orderhandler}></lightning-button>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                        <lightning-button style="position: absolute;z-index: initial;top: 390px;left: 170px;" title="Pick-Up" label="Pick-Up" variant="success" onclick={PickUphandler}></lightning-button>
+                    </div>
+                </div>  
+    </template>
+    <template lwc:if={pin}>
+        <lightning-card>
+            <img style="max-height:480px" alt="Image on T.O." src={torontoImage}/>
+            <p style="color:yellowgreen;"><b>Please enter your PinCode</b></p>
+            <div style="height:35px; margin:35px; margin-bottom:35px;">
+                <div class="demo-only--sizing slds-grid">
+                    <div class="slds-size_1-of-2">
+                        <div class="Fun">
+                            <lightning-input style="height: 20px;width: 130px;" type="Number" onchange={pinHandler}></lightning-input>
+                        </div>
+                       </div>
+                    <div class="slds-size_1-of-2">
+                        <lightning-button title="Submit" label="Submit" variant="success" onclick={PinSumithandler}></lightning-button>
+                    </div>
+                </div>
+            </div>    
+        </lightning-card>
+    </template>
+
+    <template lwc:if={DelAvail}>
+        <lightning-card>
+            <img style="max-height:480px" alt="Image on T.O." src={torontoImage}/>
+        <h1 style="color:rgb(195, 205, 50);"><b></B> {available_msg}</b></h1>
+            <p style="color:yellowgreen;"><b>Please Select Your Order</b></p>
+            <div style="height:35px; margin:35px; margin-bottom:35px;">
+                <div class="demo-only--sizing slds-grid">
+                    <div class="slds-size_1-of-4">
+                        <h1 style="margin:-10px;">Pizza</h1>
+                        <lightning-input style="    top: 10px;
+                        margin: -20px;
+                        width: 60px;" type="Number" lwc:ref="Pizza"></lightning-input>
+                    </div>
+                    <div class="slds-size_1-of-4">
+                          <h1 style="margin:-10px;">Burger</h1>
+                          <lightning-input style="    top: 10px;
+                          margin: -20px;
+                          width: 60px;" type="Number" lwc:ref="Burger"></lightning-input>
+                    </div>
+                    <div  class="slds-size_1-of-4">  
+                        <h1 style="margin:-10px;">Drink</h1> 
+                        <lightning-input style="    top: 10px;
+                        margin: -20px;
+                        width: 60px;" type="Number" lwc:ref="Drink"></lightning-input>
+                    </div>
+                    <div>
+                        <lightning-button style="position:absolute;top:578px;" title="Submit" label="Submit" variant="success" onclick={FoodHandler}></lightning-button>
+                    </div>
+                </div>   
+            </div>    
+        </lightning-card>
+    </template>
+
+    <template lwc:if={BillAvail}>
+        <lightning-card>
+            <img style="max-height:470px" alt="Image on T.O." src={torontoImage}/>
+            <p style="color:yellowgreen;"><b> Your Bill is Here</b></p>
+            <div style="height:35px; margin:35px; margin-bottom:35px;">
+                <div class="demo-only--sizing slds-grid">
+                    <h1 style="color:red;position:absolute;top:230px;left:120px;width:100px;z-index:3"><strong>Bill is {final_Bill} </strong> </h1>
+                    <br>
+                    <lightning-record-view-form record-id={current_record} object-api-name="Order__c">
+                        <b><lightning-output-field style="color:rgb(36, 9, 192);position:absolute;top:250px;left:110px;width:100px;z-index:3" field-name="Name"></lightning-output-field></b>
+                    </lightning-record-view-form>
+                    <br>
+                    <lightning-button style="margin: 10px;" title="Home" label="Home" variant="success" onclick={Homehandler}></lightning-button>
+                    <lightning-button style="margin: 10px;" title="Refresh" label="Refresh" variant="success" onclick={Refreshhandler}></lightning-button>
+                </div>
+            </div>    
+        </lightning-card>
+    </template>
+    <template lwc:if={notavail}>
+        <lightning-card>
+            <img style="height: 500px; width: 345px;" alt="Image on T.O." src={torontoImage}/>
+            <div>
+                <div class="demo-only--sizing slds-grid">
+                    <h1 style="color: red;"><strong> {available_msg} </strong> </h1>
+                    <lightning-button style="margin: 10px;" title="Home" label="Home" variant="success" onclick={Homehandler}></lightning-button>
+                    <lightning-button style="margin: 10px;" title="Refresh" label="Refresh" variant="success" onclick={Refreshhandler}></lightning-button>
+                </div>
+            </div>    
+        </lightning-card>
+    </template>
+</lightning-card>
+</div>
+</template>
