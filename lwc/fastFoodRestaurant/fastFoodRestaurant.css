@@ -1,0 +1,13 @@
+.app{
+    min-height: 100vh;
+    background-image: url(/sfsites/c/resource/bg);
+}
+.slds-size_1-of-2{
+    text-align: -webkit-center;
+}
+.Fun{
+    height: 20px;
+    width: 120px;
+    margin: -25px;
+    text-align: justify;
+}
