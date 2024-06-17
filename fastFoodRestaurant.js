@@ -93,14 +93,25 @@ export default class FastFoodRestaurant extends LightningElement {
             this.Bill=(this.Pizza*5)+(this.Burger*5)+(this.Drink*3);
             this.final_Bill=this.Bill+((5/100)*this.Bill)+7;    
         }
-        const fields={'Pizza__c':this.Pizza,'Burger__c':this.Burger,'Drink__c':this.Drink,'Enter_Your_Pincode__c':this.pincode,'Bill__c':this.final_Bill}
-        const recordInput={apiName:'Order__c',fields}
+        const ordobj= 'Order__c'
+        const fields=
+        {
+            'Pizza__c':this.Pizza,
+            'Burger__c':this.Burger,
+            'Drink__c':this.Drink,
+            'Enter_Your_Pincode__c':this.pincode,
+            'Bill__c':this.final_Bill
+        }
+        const recordInput={apiName:ordobj,fields}
         console.log(this.final_Bill)
         createRecord(recordInput).then(Response=>
             {
                 console.log(Response.id);
                 this.current_record=Response.id
             })
+            .catch(error => {
+                console.error('Error creating record:', error);
+            });
       }
     }
     Homehandler()
