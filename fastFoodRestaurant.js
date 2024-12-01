@@ -110,7 +110,7 @@ export default class FastFoodRestaurant extends LightningElement {
                 this.current_record=Response.id
             })
             .catch(error => {
-                console.error('Error creating record:', error);
+                console.error('Error while creating record:', error);
             });
       }
     }
